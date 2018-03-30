@@ -51,9 +51,10 @@ export function writeMessage (content) {
 // THUNK CREATORS
 export function fetchChannels(){
   return function thunk(dispatch){
-    return axios.get('api/channels')
+    return axios.get('/api/channels')
     .then(res => res.data)
     .then(channels => {
+      console.log('what is channels', channels)
       const action = getChannels(channels);
       dispatch(action);
     });

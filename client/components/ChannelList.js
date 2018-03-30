@@ -6,11 +6,11 @@ import {connect} from 'react-redux';
 // These values are all hardcoded...for now!
 // Soon, we'll fetch them from the server!
 
-
 function ChannelList(props){
+  console.log('what is props', props)
   return (
     <ul>
-    {props.channels.map( channel => {
+    {props.channels.map(channel => {
       return (
         <li key = {channel.id}>
           <NavLink to={`/channels/${channel.id}`} activeClassName="active">
@@ -19,7 +19,8 @@ function ChannelList(props){
           </NavLink>
         </li>
       );
-    })}
+    })
+    }
 
       <li>
           <NavLink to="/new-channel">Create a channel...</NavLink>
@@ -27,12 +28,13 @@ function ChannelList(props){
     </ul>
   );
 }
-function mapStateToProps(state){
+const mapStateToProps = function (state){
   return {
     channels: state.channels,
     messages: state.messages
   };
 }
+
 const ChannelListContainer = connect(mapStateToProps)(ChannelList);
 
 export default ChannelListContainer;
